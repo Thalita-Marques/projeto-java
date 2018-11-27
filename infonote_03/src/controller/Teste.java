@@ -32,7 +32,7 @@ public class Teste {
 
 		Notebook Ntbk1 = new Notebook(17, "Windows 7", "Aparelho Eletronico", 80, 1.999, "Coração", "07/12/1989" );
 		Ntbk1.mostrar();
-		
+
 		System.out.println("=========================================");
 
 		Notebook Ntbk2 = new Notebook(15, "Windows 10", "Aparelho Eletronico", 100, 3.000, "Flor", "05/12/1989");
