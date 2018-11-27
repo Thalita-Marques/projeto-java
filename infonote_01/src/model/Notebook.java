@@ -73,9 +73,4 @@ public class Notebook {
 				+ "]";
 	}
 
-	public void setPrecoUnitario(String string) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

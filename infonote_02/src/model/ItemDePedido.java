@@ -26,4 +26,22 @@ public class ItemDePedido {
 		return "ItemDePedido [qtde=" + qtde + ", subtotal=" + subtotal + "]";
 	}
 	
+	public ItemDePedido() {
+		super();
+	}
+	
+	public ItemDePedido(int qtde, double subtotal) {
+		super();
+		this.qtde = qtde;
+		this.subtotal = subtotal;
+	}
+	
+	public void mostrar() {
+		// Mostrar Item de Pedido
+		System.out.println("\n\nItemDePedido:\n");
+		System.out.println("Qtde: " + this.qtde);
+		System.out.println("Subtotal: " + this.subtotal);
+		
+	}
+	
 }

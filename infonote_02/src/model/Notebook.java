@@ -72,10 +72,32 @@ public class Notebook {
 				+ estoque + ", precoUnitario=" + precoUnitario + ", figura=" + figura + ", dataCadastro=" + dataCadastro
 				+ "]";
 	}
-
-	public void setPrecoUnitario(String string) {
-		// TODO Auto-generated method stub
-		
+	
+	public Notebook() {
+		super();
+	}
+	
+	public Notebook(int numeroNote, String modelo, String descricao, int estoque, double precoUnitario, String figura, String dataCadastro) {
+		super();
+		this.numeroNote = numeroNote;
+		this.modelo  = modelo;
+		this.descricao = descricao;
+		this.estoque = estoque;
+		this.precoUnitario = precoUnitario;
+		this.figura = figura;
+		this.dataCadastro = dataCadastro;
+	}
+	
+	public void mostrar() {
+		// Mostrar notebook
+		System.out.println("\n\nNotebook:\n");
+		System.out.println("Numero Note: " + this.numeroNote);
+		System.out.println("Modelo: " + this.modelo);
+		System.out.println("Descricao: " + this.descricao);
+		System.out.println("Estoque: " + this.estoque);
+		System.out.println("Preço Uinitário: " + this.precoUnitario);
+		System.out.println("Figura: " + this.figura);
+		System.out.println("Data Cadastro: " + this.dataCadastro);
 	}
 
 }

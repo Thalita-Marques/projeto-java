@@ -5,7 +5,7 @@ public class Pedido {
 	public int numero;
 	public String dataEmissao;
 	public String formaDePagamento;
-	public String valorTotal;
+	public double valorTotal;
 	public String situacao;
 
 	public int getNumero() {
@@ -32,11 +32,11 @@ public class Pedido {
 		this.formaDePagamento = formaDePagamento;
 	}
 
-	public String getValorTotal() {
+	public double getValorTotal() {
 		return valorTotal;
 	}
 
-	public void setValorTotal(String valorTotal) {
+	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
 

@@ -46,7 +46,7 @@ public class Teste {
 		pdd.setNumero(2010);
 		pdd.setDataEmissao("08/12/1989");
 		pdd.setFormaDePagamento("Cartão");
-		pdd.setValorTotal("2,000");
+		pdd.setValorTotal(2.000);
 		pdd.setSituacao("Em Andamento");
 
 		System.out.println("Número: " + pdd.getNumero());
@@ -74,7 +74,7 @@ public class Teste {
 		Ntbk1.setModelo("Windows 7");
 		Ntbk1.setDescricao("Aparelho Eletronico");
 		Ntbk1.setEstoque(80);
-		Ntbk1.setPrecoUnitario("1,999");
+		Ntbk1.setPrecoUnitario(1.999);
 		Ntbk1.setFigura("Coração");
 		Ntbk1.setDataCadastro("07/12/1989");
 
@@ -93,7 +93,7 @@ public class Teste {
 		Ntbk2.setModelo("Windows 10");
 		Ntbk2.setDescricao("Aparelho Eletronico");
 		Ntbk2.setEstoque(100);
-		Ntbk2.setPrecoUnitario("3,000");
+		Ntbk2.setPrecoUnitario(3.000);
 		Ntbk2.setFigura("Flor");
 		Ntbk2.setDataCadastro("05/12/1989");
 
@@ -112,7 +112,7 @@ public class Teste {
 		Ntbk3.setModelo("Windows 8");
 		Ntbk3.setDescricao("Aparelho Eletronico");
 		Ntbk3.setEstoque(150);
-		Ntbk3.setPrecoUnitario("2,500");
+		Ntbk3.setPrecoUnitario(2.500);
 		Ntbk3.setFigura("Bola");
 		Ntbk3.setDataCadastro("02/12/1989");
 
