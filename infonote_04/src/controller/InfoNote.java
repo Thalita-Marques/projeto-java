@@ -56,5 +56,73 @@ public class InfoNote {
 		
 		System.out.println(user);
 	}
-
+	
+	public void  buscarNotebook() {
+		System.out.println("buscarNotebook - Em Contrução");
+	}
+	
+	public void manterCarrinho() {
+		System.out.println("manterCarrinho - Em Contrução");
+	}
+	
+	public void efetuarCompra() {
+		System.out.println("efetuarCompra - Em Contrução");
+	}
+	
+	public static void main(String[] args) {
+		
+	InfoNote info = new InfoNote();
+	
+	int opcao = 8;
+	
+	info.mostrarMenu();
+	opcao = Teclado.lerInt("Digite sua opção: ");
+	
+	switch (opcao) {
+	
+	case 1:
+		info.efetuarLogin();
+		break;
+		
+	case 2:
+		info.cadastrarUsuario();
+		break;
+		
+	case 3:
+		info.buscarNotebook();
+		break;
+		
+	case 4:
+		info.manterCarrinho();
+		break;
+		
+	case 5:
+		info.manterCarrinho();
+		break;
+		
+	case 6:
+		info.manterCarrinho();
+		break;
+		
+	case 7:
+		if (!info.logado) {
+			System.out.println("Efetue login para efetuar compra.");
+			break;
+		}
+		else {
+			info.efetuarCompra();
+			break;
+		}
+	case 8:
+		System.out.println("Saida do Sistema.");
+	
+	default:
+		System.out.println("Opção inválida!");
+	}
+	Teclado.lerTexto("Pressione uma tecla para continuar...");
+	
+	do {
+		
+	}while(opcao!=8);
+  }
 }
