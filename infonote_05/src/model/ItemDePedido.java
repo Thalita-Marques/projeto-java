@@ -46,11 +46,6 @@ public class ItemDePedido {
 
 	}
 
-	public ItemDePedido(Notebook notebook) {
-		super();
-		this.notebook = notebook;
-	}
-
 	public ItemDePedido(int i, double precoUnitario, Notebook aux) {
 
 	}
