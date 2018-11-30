@@ -38,6 +38,13 @@ public class ItemDePedido {
 		this.subtotal = subtotal;
 	}
 
+	public ItemDePedido(int qtde, double subtotal, Notebook notebook) {
+		super();
+		this.qtde = qtde;
+		this.subtotal = subtotal;
+		this.notebook = notebook;
+	}
+
 	public void mostrar() {
 		// Mostrar Item de Pedido
 		System.out.println("\n\nItemDePedido:\n");
@@ -46,8 +53,5 @@ public class ItemDePedido {
 
 	}
 
-	public ItemDePedido(int i, double precoUnitario, Notebook aux) {
-
-	}
-
 }
+
