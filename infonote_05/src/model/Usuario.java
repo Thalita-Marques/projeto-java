@@ -11,6 +11,18 @@ public class Usuario {
 
 	private Endereco enderecos[] = new Endereco[10];
 	private Pedido pedidos[] = new Pedido[10];
+	
+	public Pedido[] getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(Pedido[] pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public Endereco[] getEnderecos() {
+		return enderecos;
+	}
 
 	public int getMatricula() {
 		return matricula;
@@ -86,5 +98,4 @@ public class Usuario {
 		}
 		return false;
 	}
-
 }
