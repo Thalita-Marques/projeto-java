@@ -2,15 +2,21 @@ package model;
 
 public class Notebook {
 
-	private int serialNote;
+	private String serialNote;
 	private String modelo;
 	private String descricao;
 	private int estoque;
 	private double precoUnitario;
 	private String figura;
 	private String dataCadastro;
-	
-	
+
+	public String getSerialNote() {
+		return serialNote;
+	}
+
+	public void setSerialNote(String serialNote) {
+		this.serialNote = serialNote;
+	}
 
 	public String getModelo() {
 		return modelo;
@@ -60,20 +66,13 @@ public class Notebook {
 		this.dataCadastro = dataCadastro;
 	}
 	
-	@Override
-	public String toString() {
-		return "Notebook [numeroNote=" + numeroNote + ", modelo=" + modelo + ", descricao=" + descricao + ", estoque="
-				+ estoque + ", precoUnitario=" + precoUnitario + ", figura=" + figura + ", dataCadastro=" + dataCadastro
-				+ "]";
-	}
-	
 	public Notebook() {
 		super();
 	}
 	
-	public Notebook(int numeroNote, String modelo, String descricao, int estoque, double precoUnitario, String figura, String dataCadastro) {
+	public Notebook(String serialNote, String modelo, String descricao, int estoque, double precoUnitario, String figura, String dataCadastro) {
 		super();
-		this.numeroNote = numeroNote;
+		this.serialNote = serialNote;
 		this.modelo  = modelo;
 		this.descricao = descricao;
 		this.estoque = estoque;
@@ -82,16 +81,20 @@ public class Notebook {
 		this.dataCadastro = dataCadastro;
 	}
 	
-	public void mostrar() {
-		// Mostrar notebook
-		System.out.println("\n\nNotebook:\n");
-		System.out.println("Numero Note: " + this.numeroNote);
-		System.out.println("Modelo: " + this.modelo);
-		System.out.println("Descricao: " + this.descricao);
-		System.out.println("Estoque: " + this.estoque);
-		System.out.println("Preço Uinitário: " + this.precoUnitario);
-		System.out.println("Figura: " + this.figura);
-		System.out.println("Data Cadastro: " + this.dataCadastro);
+	@Override
+	public String toString(){
+	final String ENTER = "\n";
+	String retValue = "";
+	
+	retValue = "Informações sobre o Noebook:" + ENTER +
+	"Serial Note: " + serialNote + ENTER +
+	"Modelo: " + modelo + ENTER +
+	"Descricao: " + descricao + ENTER +
+	"Estoque: " + estoque + ENTER +
+	"Preço Unitário: " + precoUnitario + ENTER +
+	"Figura: " + figura + ENTER +
+	"Data Cadastro: " + dataCadastro + ENTER;
+	return retValue;
 	}
-
+	
 }

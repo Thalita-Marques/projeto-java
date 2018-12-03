@@ -20,5 +20,15 @@ public class Funcionario extends Usuario {
 		super(login, senha, tipo);
 		this.matricula = matricula;
 	}
+	
+	@Override
+	public String toString(){
+	final String ENTER = "\n";
+	String retValue = "";
+	
+	retValue = "Informações sobre o Funcinário:" + ENTER +
+	"Matrícula: " + matricula + ENTER;
+	return retValue;
+	}
 
 }

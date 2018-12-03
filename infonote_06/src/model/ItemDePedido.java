@@ -23,11 +23,6 @@ public class ItemDePedido {
 		return subtotal;
 	}
 
-	@Override
-	public String toString() {
-		return "ItemDePedido [qtde=" + qtde + ", subtotal=" + subtotal + "]";
-	}
-
 	public ItemDePedido() {
 		super();
 	}
@@ -44,13 +39,17 @@ public class ItemDePedido {
 		this.subtotal = subtotal;
 		this.notebook = notebook;
 	}
-
-	public void mostrar() {
-		// Mostrar Item de Pedido
-		System.out.println("\n\nItemDePedido:\n");
-		System.out.println("Qtde: " + this.qtde);
-		System.out.println("Subtotal: " + this.subtotal);
-
+	
+	@Override
+	public String toString(){
+	final String ENTER = "\n";
+	String retValue = "";
+	
+	retValue = "Informações sobre o Item de Pedido:" + ENTER +
+	"Qtde: " + qtde + ENTER +
+	"Subtotal: " + subtotal + ENTER +
+	"Notebook: " + notebook + ENTER;
+	return retValue;
 	}
 
 }

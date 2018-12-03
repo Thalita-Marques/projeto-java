@@ -2,7 +2,7 @@ package model;
 
 public class Pedido {
 
-	private int numeroPedido;
+	private String numeroPedido;
 	private String dataEmissao;
 	private String formaDePagamento;
 	private String situacao;
@@ -10,66 +10,89 @@ public class Pedido {
     private Endereco enderecoEntrega;
 	private ItemDePedido itens[];
 
-	public int getNumero() {
-		return numero;
+	public String getNumeroPedido() {
+		return numeroPedido;
 	}
 
-	public Endereco getEnderecoEntrega() {
-		return enderecoEntrega;
+	public void setNumeroPedido(String numeroPedido) {
+		this.numeroPedido = numeroPedido;
 	}
-
+	
 	public String getDataEmissao() {
 		return dataEmissao;
+	}
+
+	public void setDataEmissao(String dataEmissao) {
+		this.dataEmissao = dataEmissao;
 	}
 
 	public String getFormaDePagamento() {
 		return formaDePagamento;
 	}
-
+	
+	public void setFormaDePagamento(String formaDePagamento) {
+		this.formaDePagamento = formaDePagamento;
+	}
+	
+	public double getValorTotal() {
+		return valorTotal;
+	}
+	
+	public void setValorTotal(double valorTotal) {
+		this.valorTotal = valorTotal;
+	}
+	
 	public String getSituacao() {
 		return situacao;
 	}
 
-	public double getValorTotal() {
-		return valorTotal;
+	public void setSituacao(String situacao) {
+		this.situacao = situacao;
 	}
 
-	@Override
-	public String toString() {
-		return "Pedido [\n dataEmissao=" + dataEmissao + ",\n formaDePagamento=" + formaDePagamento + ",\n situacao="
-				+ situacao + ",\n numero=" + numero + ",\n valorTotal=" + valorTotal + "]";
+	public Endereco getEnderecoEntrega() {
+		return enderecoEntrega;
+	}
+	
+	public ItemDePedido[] getItens() {
+		return itens;
+	}
+
+	public void setItens(ItemDePedido[] itens) {
+		this.itens = itens;
 	}
 
 	public Pedido() {
 		super();
 	}
 
-	public Pedido(int numero, String dataEmissao, double valorTotal, String situacao, String formaDePagamento) {
+	public Pedido(String numeroPedido, String dataEmissao, double valorTotal, String formaDePagamento, String situacao, Endereco enderecoEntrega) {
 		super();
-		this.numero = numero;
+		this.numeroPedido = numeroPedido;
 		this.valorTotal = valorTotal;
 		this.dataEmissao = dataEmissao;
 		this.formaDePagamento = formaDePagamento;
 		this.situacao = situacao;
+		this.enderecoEntrega = enderecoEntrega;
 
 	}
 
-	public void mostrar() {
-
-		System.out.println("`\n\nPedido:\n");
-		System.out.println("Numero: " + this.numero);
-		System.out.println("Valor Total: " + this.valorTotal);
-		System.out.println("Data Emissão: " + this.dataEmissao);
-		System.out.println("Forma De Pagamento: " + this.formaDePagamento);
-		System.out.println("Situação: " + this.situacao);
-		
-		System.out.println("\n\nItens do Pedido:\n");
-		for (int i = 0; i < itens.length; i++){
-			if (itens[i] != null) {
-				itens[i].mostrar();
-			}
-		}
-
+	@Override
+	public String toString() {
+	final String ENTER = "\n";
+	String retValue = "";
+	retValue = "Informações sobre Pedido:" + ENTER +
+	"Número do Pedido: " + numeroPedido + ENTER +
+	"Data de Emissão: " + dataEmissao + ENTER +
+	"Forma de pagamento: " + formaDePagamento + ENTER +
+	"Valor Total: " + valorTotal + ENTER +
+	"Situação: " + situacao + ENTER +
+	"Endereço de Entrega: " + ENTER +
+	"Itens: ";
+	for (int i = 0; i < itens.length; i++){
+	retValue += itens[i] + ENTER;
+	}
+	return retValue;
 	}
 
 	public void setEnderecoEntrega(Endereco enderecoEntrega) {
