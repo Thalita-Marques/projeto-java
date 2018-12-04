@@ -1,6 +1,6 @@
 package model;
 
-public class Usuario {
+public abstract class Usuario {
 	
 	private String login;
 	private String senha;
@@ -53,4 +53,5 @@ public class Usuario {
 	
 	return retValue;
 	}
+	
 }
