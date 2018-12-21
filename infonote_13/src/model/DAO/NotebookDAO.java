@@ -33,8 +33,8 @@ public class NotebookDAO {
 
 		try {
 
-			String sql = "insert into notebook " + "(serialNote, modelo, descricao, estoque, figura, dataCadastro) "
-					+ "values (?,?,?,?,?)";
+			String sql = "insert into notebook " + "(serialnote, modelo, descricao, "
+					+ "estoque, precoUnitario, figura, dataCadastro)" + " values (?,?,?,?,?,?,?)";
 
 			Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha);
 
@@ -64,13 +64,13 @@ public class NotebookDAO {
 	
 	public static Notebook[] buscarTodos() {
 		Notebook[] notebooks = null;
+		NotebookDAO noteDAO = new NotebookDAO();
 
 		try {
 
-			String sql = "Select * from contato";
+			String sql = "Select * from notebook";
 
-			Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote_13?useTimezone=true&serverTimezone=UTC", "com.mysql.cj.jdbc.Driver", "jeffery",
-					"1234");
+			Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha);
 
 			Connection con = conex.obterConexao();
 
@@ -104,21 +104,21 @@ public class NotebookDAO {
 		
 	}
 	
-	public static Notebook excluir(int estoque){
+	public static Notebook excluir(String serialNote){
 		
 		Notebook notebook = null;
+		NotebookDAO noteDAO = new NotebookDAO();
 		
 		try {
 
-			String sql = "delete from notebook where id = ?";
-			Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote_13?useTimezone=true&serverTimezone=UTC", "com.mysql.cj.jdbc.Driver", "jeffery",
-					"1234");
+			String sql = "delete from notebook where serialnote = ?";
+			Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha);
 
 			Connection con = conex.obterConexao();
 
 			PreparedStatement comando = con.prepareStatement(sql);
 			
-			comando.setInt(1, estoque);
+			comando.setString(1,serialNote);
 			comando.executeUpdate();
 
 			comando.executeUpdate();
@@ -130,15 +130,16 @@ public class NotebookDAO {
 		return notebook;
 	}
 	
-	public static Notebook atualizar(String descricao, int estoque,double precoUnitario, String figura, String dataCadastro){
+	public static Notebook atualizar(String descricao, int estoque, double precoUnitario, String figura, String dataCadastro, String serialNote){
 		
 		Notebook notebook = null;
+		NotebookDAO noteDAO = new NotebookDAO();
 		
 		try {
 
-			String sql = "update notebook set mensagem = ? where id = ? ";
-			Conexao conex = new Conexao("jdbc:mysql://localhost:3306/infonote_13?useTimezone=true&serverTimezone=UTC", "com.mysql.cj.jdbc.Driver", "jeffery",
-					"1234");
+			String sql = "update notebook set mensagem = ?" + " where " + " serialnote = ? ";;
+			
+			Conexao conex = new Conexao(noteDAO.url, noteDAO.driver, noteDAO.login, noteDAO.senha);
 			
 			Connection con = conex.obterConexao();
 
@@ -149,6 +150,7 @@ public class NotebookDAO {
 			comando.setDouble(3, precoUnitario);
 			comando.setString(4, figura);
 			comando.setString(5, dataCadastro);
+			comando.setString(6,serialNote);
 
 			comando.executeUpdate();
 

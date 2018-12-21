@@ -1,8 +1,6 @@
 package controller;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
+import java.util.Date;
 import java.text.DateFormat;
 import java.util.Locale;
 
@@ -13,11 +11,6 @@ import util.*;
 public class InfoNote {
 
 	Usuario usuario;
-
-	private static Cliente clienteGlobal = null;
-	@SuppressWarnings("unused")
-	private static Funcionario funcionarioGlobal = null;
-
 	Cliente cliente;
 	Notebook notebooks[] = new Notebook[10];
 	Pedido pedido;
@@ -38,18 +31,8 @@ public class InfoNote {
 	private static final int AREA_ADMINISTRATIVA = 9;
 	private static final int SAIR = 10;
 
-	public static boolean isNumeric(String str) {
-
-		try {
-			@SuppressWarnings("unused")
-			int i = Integer.parseInt(str);
-		} catch (NumberFormatException nfe) {
-			return false;
-		}
-		return true;
-	}
-
 	public void cadastrarUsuario() {
+		
 		System.out.println("==================================================");
 		System.out.println(" InfoNote - Cadastro de Usuários. ");
 		System.out.println("==================================================");
@@ -87,7 +70,7 @@ public class InfoNote {
 		Endereco endereco = EnderecoDAO.inserir(logradouro, numero, complemento, bairro, cidade, estado, cep,
 				codigoCliente);
 
-		clienteGlobal = cliente;
+		// clienteGlobal = cliente;
 
 		System.out.println("==================================================");
 		System.out.println(" Usuario Cadastrado Com Sucesso. ");
@@ -97,13 +80,14 @@ public class InfoNote {
 	}
 
 	public void mostrarMenu() {
+		
 		System.out.println("=================================================");
 		System.out.println(" InfoNote - Se não é info não vendemos. "
-				+ DateFormat.getDateInstance(DateFormat.SHORT).format(new Date(0)) + " "
-				+ DateFormat.getTimeInstance().format(new Date(0)));
+				+ DateFormat.getDateInstance(DateFormat.SHORT).format(new Date()) + " "
+				+ DateFormat.getTimeInstance().format(new Date()));
 
 		if (logado == true) {
-			System.out.println("Seja bem vindo, " + clienteGlobal.getNomeInvertido());
+			System.out.println("Seja bem vindo, " + cliente.getNomeInvertido());
 		}
 
 		System.out.println("==================================================");
@@ -119,6 +103,16 @@ public class InfoNote {
 		System.out.println("9 - Área Administrativa");
 		System.out.println("10 - Sair");
 	}
+	
+	// public static boolean isNumeric(String str) {
+
+		// try {
+		//	int i = Integer.parseInt(str);
+		// } catch (NumberFormatException nfe) {
+			//return false;
+		// }
+		// return true;
+	// }
 
 	public void efetuarLogin() {
 
@@ -128,9 +122,9 @@ public class InfoNote {
 
 		cliente = ClienteDAO.buscarPorLoginSenha(login, senha);
 
-		if (clienteGlobal != null) {
+		if (cliente != null) {
 
-			logado = clienteGlobal.validarLogin(login, senha);
+			logado = cliente.validarLogin(login, senha);
 
 		} else {
 
@@ -164,6 +158,7 @@ public class InfoNote {
 
 				case 3:
 					System.out.println("Obrigado e volte sempre!");
+					System.exit(0);
 					break;
 
 				default:
@@ -175,61 +170,6 @@ public class InfoNote {
 		}
 	}
 	
-	public void cadastrarNotebook() {
-		System.out.println("==================================================");
-		System.out.println(" InfoNote - Cadastro do Notebook. ");
-		System.out.println("==================================================");
-
-
-		String serialNote = Teclado.lerTexto("Serial do Note: ");
-		String modelo = Teclado.lerTexto("Modelo: ");
-		String descricao = Teclado.lerTexto("E-mail: ");
-		int estoque = Teclado.lerInt("Estoque: ");
-		double precoUnitario = Teclado.lerDouble("Preco Unitario: ");
-		String figura = Teclado.lerTexto("Figura: ");
-		String dataCadastro = Teclado.lerTexto("Data de Casdatro: ");
-	
-
-		System.out.println("==================================================");
-
-		Notebook notebook = NotebookDAO.inserir(serialNote, modelo, descricao, estoque, precoUnitario , figura,
-				dataCadastro);
-
-		System.out.println("==================================================");
-		System.out.println(" Notebook Cadastrado Com Sucesso. ");
-		System.out.println("==================================================");
-		System.out.println(notebook);
-		
-	}
-
-	public void buscarNotebook() {
-		
-		System.out.println("buscarNotebook - Em Contrução");
-		for (int i = 0; i < notebooks.length; i++) {
-			if (notebooks[i] != null) {
-				System.out.println(notebooks[i].getSerialNote() + "-----" + notebooks[i].getModelo());
-			}
-		}
-	}
-	
-   public void buscarNotebooks() {
-		
-		System.out.println("buscarNotebooks - Em Contrução");
-		for (int i = 0; i < notebooks.length; i++) {
-			if (notebooks[i] != null) {
-				System.out.println(
-						notebooks[i].getSerialNote() + "-----" + 
-				        notebooks[i].getModelo() + "-----" + 
-						notebooks[i].getDescricao() + "-----" + 
-				        notebooks[i].getEstoque() + "-----" + 
-						notebooks[i].getPrecoUnitario() + "-----" + 
-				        notebooks[i].getFigura() + "-----" + 
-						notebooks[i].getDataCadastro());
-			}
-		}
-	}
-
-
 	public void inserirNotebook() {
 
 		String serialNote = Teclado.lerTexto("Informe o número do notebook" + " para compra: ");
@@ -252,6 +192,89 @@ public class InfoNote {
 		ItemDePedido item = new ItemDePedido(1, aux.getPrecoUnitario(), aux);
 
 		pedido.inserirItem(item);
+	}
+	
+	private void cadastrarNotebook() {
+		
+		System.out.println("====================================");
+		System.out.println(" Cadastro de Notebook ");
+		System.out.println("====================================");
+		
+		String serialNote = Teclado.lerTexto("SeriaNote: ");
+		String modelo = Teclado.lerTexto("Modelo: ");
+		String descricao = Teclado.lerTexto("Descricao: ");
+		int estoque = Teclado.lerInt("Estoque: ");
+		double precoUnitario = Teclado.lerDouble("Preço Unitário: ");
+		String figura = Teclado.lerTexto("Figura: ");
+		String dataCadastro = Teclado.lerTexto("Data de Cadastro: ");
+		
+		Notebook notebook = NotebookDAO.inserir(serialNote, modelo, descricao,
+				estoque, precoUnitario, figura,
+				dataCadastro);
+		
+		System.out.println("==================================================");
+		System.out.println(" Notebook Cadastrado Com Sucesso. ");
+		System.out.println("==================================================");
+		System.out.println(notebook);	
+	}
+
+	public void buscarNotebook() {
+		
+		System.out.println("buscarNotebook - Em Contrução");
+		
+		for (int i = 0; i < notebooks.length; i++) {
+			if (notebooks[i] != null) {
+				System.out.println(
+						notebooks[i].getSerialNote() + "-----" + 
+			            notebooks[i].getModelo());
+			}
+		}
+	}
+	
+   public void mostrarNotebooks() {
+		
+		System.out.println("mostrarNotebooks - Em Contrução");
+		for (int i = 0; i < notebooks.length; i++) {
+			if (notebooks[i] != null) {
+				System.out.println(
+						notebooks[i].getSerialNote() + "-----" + 
+				        notebooks[i].getModelo() + "-----" + 
+						notebooks[i].getDescricao() + "-----" + 
+				        notebooks[i].getEstoque() + "-----" + 
+						notebooks[i].getPrecoUnitario() + "-----" + 
+				        notebooks[i].getFigura() + "-----" + 
+						notebooks[i].getDataCadastro());
+			}
+		}
+	}
+   
+   private void editarNotebook() {
+	
+	   System.out.println("====================================");
+		System.out.println(" Editar Notebook ");
+		System.out.println("====================================");
+
+		String serialNote = Teclado.lerTexto("Informe o SeriaNote do Notebook a ser atualizado: ");
+		String descricao = Teclado.lerTexto("Descricao: ");
+		int estoque = Teclado.lerInt("Estoque: ");
+		double precoUnitario = Teclado.lerDouble("Preço Unitário: ");
+		String figura = Teclado.lerTexto("Figura: ");
+		String dataCadastro = Teclado.lerTexto("Data de Cadastro: ");
+
+		Notebook notebook = NotebookDAO.atualizar(descricao, estoque, precoUnitario, figura, dataCadastro, serialNote);
+		System.out.println("Notebook atualizado com sucesso");
+		System.out.println(notebook);
+		
+	}
+   
+   private void excluirNotebook() {
+		
+	   String serialNote = Teclado.lerTexto("Informe o SerialNote do Notebook a ser excluido: ");
+		
+		Notebook notebook = NotebookDAO.excluir(serialNote);
+		
+		System.out.println(notebook);	
+		
 	}
 
 	public void manterCarrinho() {
@@ -363,6 +386,7 @@ public class InfoNote {
 			} else {
 
 				System.out.println("Usuário ou senha inválido.");
+				System.exit(0);
 			}
 		}
 	}
@@ -403,6 +427,7 @@ public class InfoNote {
 				
 			case 5:
 				System.out.println("Saída do Sistema");
+				System.exit(0);
 				break;
 				
 			default:
